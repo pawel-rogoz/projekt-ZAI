@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnalyzer.API", "IoTAnalyzer.API.csproj", "{A164D77D-900F-45CF-82F3-05655E9A4313}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnalyzer.API", "IoTAnalyzer.API\IoTAnalyzer.API.csproj", "{A164D77D-900F-45CF-82F3-05655E9A4313}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnalyzer.Core", "IoTAnalyzer.Core\IoTAnalyzer.Core.csproj", "{5B7A3A6B-B0EF-48C8-8F73-000496A09C31}"
 EndProject
