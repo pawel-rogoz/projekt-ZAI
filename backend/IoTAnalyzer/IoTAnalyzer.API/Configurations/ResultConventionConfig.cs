@@ -13,7 +13,8 @@ public static class ResultConventionConfig
             .For(ResultStatus.NotFound, HttpStatusCode.NotFound, o => o.With(Problem(HttpStatusCode.NotFound, "Not Found")))
             .For(ResultStatus.Invalid, HttpStatusCode.UnprocessableEntity, o => o.With(Problem(HttpStatusCode.UnprocessableEntity, "Unprocessable Entity")))
             .For(ResultStatus.Conflict, HttpStatusCode.Conflict, o => o.With(Problem(HttpStatusCode.Conflict, "Conflict")))
-            .For(ResultStatus.Unauthorized, HttpStatusCode.Unauthorized, o => o.With(Problem(HttpStatusCode.Unauthorized, "Unauthorized"))));
+            .For(ResultStatus.Unauthorized, HttpStatusCode.Unauthorized, o => o.With(Problem(HttpStatusCode.Unauthorized, "Unauthorized")))
+            .For(ResultStatus.Forbidden, HttpStatusCode.Forbidden, o => o.With(Problem(HttpStatusCode.Forbidden, "Forbidden"))));
 
     private static Func<ControllerBase, Ardalis.Result.IResult, ProblemDetails> Problem(HttpStatusCode status, string title) =>
         (controller, result) =>
