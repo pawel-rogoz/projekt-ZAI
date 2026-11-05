@@ -7,7 +7,7 @@ public class IoTAnalyzerDbContext(DbContextOptions<IoTAnalyzerDbContext> options
 {
     public DbSet<User> Users => Set<User>();
     public DbSet<AuthSession> AuthSessions => Set<AuthSession>();
-    public DbSet<Series> Series => Set<Series>();
+    public DbSet<MeasurementSeries> Series => Set<MeasurementSeries>();
     public DbSet<Sensor> Sensors => Set<Sensor>();
     public DbSet<Measurement> Measurements => Set<Measurement>();
 
