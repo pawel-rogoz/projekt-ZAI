@@ -1,13 +1,25 @@
+using Ardalis.SharedKernel;
+
 namespace IoTAnalyzer.Core.Entities;
 
-public class Measurement
+public class Measurement : EntityBase<long>, IAggregateRoot
 {
-    public long Id { get; set; }
-    public int SeriesId { get; set; }
-    public Series Series { get; set; } = null!;
-    public int? SensorId { get; set; }
-    public Sensor? Sensor { get; set; }
-    public double Value { get; set; }
-    public DateTime Timestamp { get; set; }
-    public DateTime ReceivedAt { get; set; }
+    public int SeriesId { get; private set; }
+    public int? SensorId { get; private set; }
+    public double Value { get; private set; }
+    public DateTime Timestamp { get; private set; }
+    public DateTime ReceivedAt { get; private set; }
+
+    private Measurement()
+    {
+    }
+
+    public Measurement(int seriesId, int sensorId, double value, DateTime timestamp, DateTime receivedAt)
+    {
+        SeriesId = seriesId;
+        SensorId = sensorId;
+        Value = value;
+        Timestamp = timestamp;
+        ReceivedAt = receivedAt;
+    }
 }

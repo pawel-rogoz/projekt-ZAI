@@ -17,13 +17,13 @@ public class MeasurementConfig : IEntityTypeConfiguration<Measurement>
         builder.HasIndex(m => m.Timestamp);
         builder.HasIndex(m => m.SensorId);
 
-        builder.HasOne(m => m.Series)
-            .WithMany(s => s.Measurements)
+        builder.HasOne<MeasurementSeries>()
+            .WithMany()
             .HasForeignKey(m => m.SeriesId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasOne(m => m.Sensor)
-            .WithMany(s => s.Measurements)
+        builder.HasOne<Sensor>()
+            .WithMany()
             .HasForeignKey(m => m.SensorId)
             .OnDelete(DeleteBehavior.SetNull);
     }
