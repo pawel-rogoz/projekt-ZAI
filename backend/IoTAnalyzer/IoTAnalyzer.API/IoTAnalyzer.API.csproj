@@ -8,7 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.7"/>
+        <PackageReference Include="Ardalis.Result.AspNetCore" Version="10.1.0" />
+        <PackageReference Include="Mediator.SourceGenerator" Version="3.0.2">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.7" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.14">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
@@ -18,10 +23,6 @@
     <ItemGroup>
         <ProjectReference Include="..\IoTAnalyzer.UseCases\IoTAnalyzer.UseCases.csproj" />
         <ProjectReference Include="..\IoTAnalyzer.Infrastructure\IoTAnalyzer.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Controllers\" />
     </ItemGroup>
 
 </Project>
