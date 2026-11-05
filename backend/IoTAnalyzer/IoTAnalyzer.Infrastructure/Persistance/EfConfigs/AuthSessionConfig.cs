@@ -17,8 +17,8 @@ public class AuthSessionConfig : IEntityTypeConfiguration<AuthSession>
         builder.HasIndex(s => s.TokenHash).IsUnique();
         builder.HasIndex(s => s.ExpiresAt);
 
-        builder.HasOne(s => s.User)
-            .WithMany(u => u.Sessions)
+        builder.HasOne<User>()
+            .WithMany()
             .HasForeignKey(s => s.UserId)
             .OnDelete(DeleteBehavior.Cascade);
     }
