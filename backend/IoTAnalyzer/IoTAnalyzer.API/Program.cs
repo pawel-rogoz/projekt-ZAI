@@ -5,15 +5,21 @@ using IoTAnalyzer.API.Authentication;
 using IoTAnalyzer.API.Configurations;
 using IoTAnalyzer.API.Controllers.Auth;
 using IoTAnalyzer.Infrastructure;
+using IoTAnalyzer.Infrastructure.Persistance;
 using IoTAnalyzer.Infrastructure.Persistance.Seed;
 using IoTAnalyzer.Infrastructure.Security;
-using Microsoft.AspNetCore.Authentication;
 using IoTAnalyzer.UseCases.Series.ListSeries;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("Default")
-    ?? throw new InvalidOperationException("Brak ConnectionStrings:Default (zmienna ConnectionStrings__Default).");
+if (Environment.GetEnvironmentVariable("PORT") is { Length: > 0 } port)
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
+var connectionString = ConnectionStringResolver.Resolve(
+        builder.Configuration.GetConnectionString("Default"),
+        builder.Configuration["DATABASE_URL"])
+    ?? throw new InvalidOperationException("Brak ConnectionStrings__Default lub DATABASE_URL.");
 builder.Services.AddInfrastructureServices(connectionString);
 builder.Services.Configure<AuthOptions>(builder.Configuration.GetSection(AuthOptions.SectionName));
 
@@ -50,6 +56,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+await app.Services.ApplyMigrationsAsync();
 await app.Services.SeedAdminUserAsync();
 
 app.UseExceptionHandler();
