@@ -7,6 +7,7 @@ using IoTAnalyzer.UseCases.Series.GetSeriesById;
 using IoTAnalyzer.UseCases.Series.ListSeries;
 using IoTAnalyzer.UseCases.Series.UpdateSeries;
 using Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IoTAnalyzer.API.Controllers.Series;
@@ -26,6 +27,7 @@ public class SeriesController(IMediator mediator) : ControllerBase
         await mediator.Send(new GetSeriesByIdQuery(seriesId), cancellationToken);
 
     [HttpPost]
+    [Authorize]
     [ExpectedFailures(ResultStatus.Invalid)]
     public async Task<Result<SeriesDto>> Create(SeriesRequest request, CancellationToken cancellationToken)
     {
@@ -37,6 +39,7 @@ public class SeriesController(IMediator mediator) : ControllerBase
     }
 
     [HttpPut("{seriesId:int}")]
+    [Authorize]
     [ExpectedFailures(ResultStatus.NotFound, ResultStatus.Invalid, ResultStatus.Conflict)]
     public async Task<Result<SeriesDto>> Update(int seriesId, SeriesRequest request, CancellationToken cancellationToken)
     {
@@ -46,6 +49,7 @@ public class SeriesController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("{seriesId:int}")]
+    [Authorize]
     [ExpectedFailures(ResultStatus.NotFound)]
     public async Task<Result> Delete(int seriesId, CancellationToken cancellationToken)
     {

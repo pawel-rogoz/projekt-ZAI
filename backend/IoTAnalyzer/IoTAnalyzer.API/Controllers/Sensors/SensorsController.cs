@@ -6,6 +6,7 @@ using IoTAnalyzer.UseCases.Sensors.ListSensors;
 using IoTAnalyzer.UseCases.Sensors.RegisterSensor;
 using IoTAnalyzer.UseCases.Sensors.UnregisterSensor;
 using Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IoTAnalyzer.API.Controllers.Sensors;
@@ -13,6 +14,7 @@ namespace IoTAnalyzer.API.Controllers.Sensors;
 [ApiController]
 [Route("api/sensors")]
 [TranslateResultToActionResult]
+[Authorize]
 public class SensorsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
