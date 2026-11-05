@@ -19,8 +19,8 @@ public class SensorConfig : IEntityTypeConfiguration<Sensor>
 
         builder.HasIndex(s => s.ApiKeyHash).IsUnique();
 
-        builder.HasOne(s => s.Series)
-            .WithMany(s => s.Sensors)
+        builder.HasOne<MeasurementSeries>()
+            .WithMany()
             .HasForeignKey(s => s.SeriesId)
             .OnDelete(DeleteBehavior.Cascade);
     }
