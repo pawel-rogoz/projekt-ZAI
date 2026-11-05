@@ -18,6 +18,8 @@ public static class InfrastructureServiceExtensions
         services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
         services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
         services.AddSingleton<IApiKeyService, ApiKeyService>();
+        services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
+        services.AddSingleton<IAccessTokenService, AccessTokenService>();
 
         return services;
     }
