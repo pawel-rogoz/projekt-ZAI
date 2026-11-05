@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace IoTAnalyzer.Infrastructure.Persistance.EfConfigs;
 
-public class SeriesConfig : IEntityTypeConfiguration<Series>
+public class MeasurementSeriesConfig : IEntityTypeConfiguration<MeasurementSeries>
 {
-    public void Configure(EntityTypeBuilder<Series> builder)
+    public void Configure(EntityTypeBuilder<MeasurementSeries> builder)
     {
         builder.ToTable("series", t =>
         {
