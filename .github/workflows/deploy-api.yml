@@ -1,0 +1,68 @@
+name: Deploy API to Azure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - backend/**
+      - .github/workflows/deploy-api.yml
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: iotanalyzer-api
+  SOLUTION_PATH: backend/IoTAnalyzer/IoTAnalyzer.sln
+  PROJECT_PATH: backend/IoTAnalyzer/IoTAnalyzer.API/IoTAnalyzer.API.csproj
+  DOTNET_VERSION: 10.0.x
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION_PATH }} -c Release --no-restore
+
+      - name: Publish
+        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --no-build -o ${{ runner.temp }}/api
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api
+          path: ${{ runner.temp }}/api
+          retention-days: 7
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.webapp-url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: api
+          path: api
+
+      - name: Deploy to Azure Web App
+        id: deploy
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: api
+
+      - name: Health check
+        run: |
+          for i in $(seq 1 12); do
+            if curl -fsS "${{ steps.deploy.outputs.webapp-url }}/api/health"; then exit 0; fi
+            sleep 10
+          done
+          exit 1
