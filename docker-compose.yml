@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-iotanalyzer}
+      POSTGRES_USER: ${POSTGRES_USER:-iotanalyzer}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-iotanalyzer_dev}
+    ports:
+      - "5432:5432"
+    volumes:
+      - iotanalyzer-db:/var/lib/postgresql/data
+
+  api:
+    build: ./backend/IoTAnalyzer
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      ConnectionStrings__Default: "Host=db;Port=5432;Database=${POSTGRES_DB:-iotanalyzer};Username=${POSTGRES_USER:-iotanalyzer};Password=${POSTGRES_PASSWORD:-iotanalyzer_dev}"
+      Auth__AdminUsername: ${Auth__AdminUsername:-admin}
+      Auth__AdminPassword: ${Auth__AdminPassword:-admin-dev-password}
+    ports:
+      - "8080:8080"
+    profiles:
+      - api
+
+volumes:
+  iotanalyzer-db:
