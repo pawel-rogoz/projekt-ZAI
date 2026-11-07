@@ -20,5 +20,8 @@ RUN dotnet publish "IoTAnalyzer.API/IoTAnalyzer.API.csproj" -c $BUILD_CONFIGURAT
 
 FROM base AS final
 WORKDIR /app
+ENV ASPNETCORE_ENVIRONMENT=Production \
+    ASPNETCORE_HTTP_PORTS=8080 \
+    ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "IoTAnalyzer.API.dll"]
