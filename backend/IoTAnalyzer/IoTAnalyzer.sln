@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnalyzer.API", "IoTAnalyzer.API.csproj", "{A164D77D-900F-45CF-82F3-05655E9A4313}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnalyzer.Core", "IoTAnalyzer.Core\IoTAnalyzer.Core.csproj", "{5B7A3A6B-B0EF-48C8-8F73-000496A09C31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnalyzer.Infrastructure", "IoTAnalyzer.Infrastructure\IoTAnalyzer.Infrastructure.csproj", "{90FC9E48-B18B-49C4-B11B-BFDBF71E67F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnalyzer.UseCases", "IoTAnalyzer.UseCases\IoTAnalyzer.UseCases.csproj", "{0E7FA50F-C464-468D-9DB6-9BCF60E46119}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A164D77D-900F-45CF-82F3-05655E9A4313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A164D77D-900F-45CF-82F3-05655E9A4313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A164D77D-900F-45CF-82F3-05655E9A4313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A164D77D-900F-45CF-82F3-05655E9A4313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B7A3A6B-B0EF-48C8-8F73-000496A09C31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B7A3A6B-B0EF-48C8-8F73-000496A09C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B7A3A6B-B0EF-48C8-8F73-000496A09C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B7A3A6B-B0EF-48C8-8F73-000496A09C31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90FC9E48-B18B-49C4-B11B-BFDBF71E67F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90FC9E48-B18B-49C4-B11B-BFDBF71E67F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90FC9E48-B18B-49C4-B11B-BFDBF71E67F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90FC9E48-B18B-49C4-B11B-BFDBF71E67F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E7FA50F-C464-468D-9DB6-9BCF60E46119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E7FA50F-C464-468D-9DB6-9BCF60E46119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E7FA50F-C464-468D-9DB6-9BCF60E46119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E7FA50F-C464-468D-9DB6-9BCF60E46119}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
